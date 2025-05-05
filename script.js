@@ -115,3 +115,19 @@ function makeCardByTemplate(title, description, tags, price, img) {
 items.forEach(function(item) {
     shopItems.append(makeCardByTemplate(item.title, item.description, item.tags, item.price, item.img));
 });
+
+
+const searchBtn = document.querySelector('#search-btn');
+const searchInput = document.querySelector('#search-input');
+
+
+searchBtn.addEventListener('click', function() {
+    const search = searchInput.value;
+
+    function getText(str) {
+        const sentence = str.trim().toLowerCase();
+        return sentence.includes();
+    }
+
+
+})
