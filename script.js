@@ -85,46 +85,33 @@ const items = [{
 ];
 
 const cardTemplate = document.querySelector('#item-template');
+const shopItems = document.querySelector('#shop-items');
+
+
 
 function makeCardByTemplate(title, description, tags, price, img) {
+
     const myCard = cardTemplate.content.cloneNode(true);
 
     myCard.querySelector('h1').textContent = title;
     myCard.querySelector('p').textContent = description;
-    myCard.querySelector('.tags').textContent = tags;
-    myCard.querySelector('span').textContent = price;
+    myCard.querySelector('.price').textContent = price;
     myCard.querySelector('img').src = img;
 
+    const containerTags = myCard.querySelector('.tags');
+
+    tags.forEach(function(item) {
+        const spanTag = document.createElement('span');
+        spanTag.classList.add('tag');
+        spanTag.textContent = item;
+
+        containerTags.append(spanTag);
+    });
 
 
     return myCard;
-
 }
 
-const Card1 = makeCardByTemplate('Игрушка мячик', 'Ваш питомец будет счастлив!', ["cat", "dog"], 500, './img/1.jpeg');
-const Card2 = makeCardByTemplate("Игрушка лабиринт", "Поможет в развитии интеллекта!", ["cat", "dog"], 900, './img/2.jpeg');
-const Card3 = makeCardByTemplate("Игрушка для котят", "Отвлечет вашего питомца!", ["cat"], 300, "./img/3.jpeg");
-const Card4 = makeCardByTemplate("Миска «Котик»", "Подойдет и для собак!", ["cat", "dog"], 660, "./img/4.jpeg");
-const Card5 = makeCardByTemplate("Лоток розовый", "Теперь вы можете забыть о проблемах с туалетом", ["cat"], 400, "./img/5.jpeg");
-const Card6 = makeCardByTemplate("Сухой корм для кошек", "Специальная формула для милых усатиков!", ["cat"], 200, "./img/6.jpeg");
-const Card7 = makeCardByTemplate("Сухой корм для собак", "Содержит полный комплекс витаминов", ["dog"], 300, "./img/7.jpeg");
-const Card8 = makeCardByTemplate("Игрушка для собак", "Теперь вы можете не переживать за личные вещи", ["dog"], 500, "./img/8.jpeg");
-const Card9 = makeCardByTemplate("Лежанка", "Идеальное место для отдыха!", ["cat", "dog"], 1500, "./img/9.jpeg");
-const Card10 = makeCardByTemplate("Поилка для собак", "Возьмите с собой в путешествие", ["dog"], 800, "./img/10.jpeg");
-const Card11 = makeCardByTemplate("Переноска", "Путешествуйте с комфортом!", ["cat", "dog"], 3500, "./img/11.jpeg");
-const Card12 = makeCardByTemplate("Поводок для собак", "Для чудесных прогулок вместе", ["dog"], 800, "./img/12.jpeg");
-
-
-const shopItems = document.querySelector('#shop-items');
-shopItems.append(Card1);
-shopItems.append(Card2);
-shopItems.append(Card3);
-shopItems.append(Card4);
-shopItems.append(Card5);
-shopItems.append(Card6);
-shopItems.append(Card7);
-shopItems.append(Card8);
-shopItems.append(Card9);
-shopItems.append(Card10);
-shopItems.append(Card11);
-shopItems.append(Card12);
+items.forEach(function(item) {
+    shopItems.append(makeCardByTemplate(item.title, item.description, item.tags, item.price, item.img));
+});
