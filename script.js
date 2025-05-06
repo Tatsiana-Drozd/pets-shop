@@ -119,15 +119,27 @@ items.forEach(function(item) {
 
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
+const nothingFound = document.querySelector('#nothing-found');
+
 
 
 searchBtn.addEventListener('click', function() {
-    const search = searchInput.value;
+    const inputValue = searchInput.value.trim().toLowerCase();
 
-    function getText(str) {
-        const sentence = str.trim().toLowerCase();
-        return sentence.includes();
+
+
+    nothingFound.textContent = "Ничего не найдено";
+    shopItems.innerHTML = "";
+
+    const filteredItems = items.filter((el) =>
+        el.title.toLowerCase().includes(inputValue)
+    )
+
+    if (filteredItems.length > 0) {
+        filteredItems.forEach(function(item) {
+            shopItems.append(makeCardByTemplate(item.title, item.description, item.tags, item.price, item.img))
+        })
+    } else {
+        nothingFound.textContent = "Ничего не найдено";
     }
-
-
-})
+});
