@@ -126,6 +126,8 @@ const nothingFound = document.querySelector('#nothing-found');
 searchBtn.addEventListener('click', function() {
     const inputValue = searchInput.value.trim().toLowerCase();
 
+
+    nothingFound.textContent = "";
     shopItems.innerHTML = "";
 
     const filteredItems = items.filter((el) =>
